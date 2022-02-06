@@ -1,0 +1,10 @@
+.profile__open-window {
+  border: none;
+  background: black;
+  padding: 0;
+}
+
+.profile__open-window:hover {
+  opacity: .6;
+  cursor: pointer;
+}

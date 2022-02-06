@@ -1,0 +1,14 @@
+.element__button-like {
+  border: none;
+  padding: 0;
+  background-color: transparent;
+  position: absolute;
+  bottom: 27px;
+  right: 20px;
+  z-index: 1;
+}
+
+.element__button-like:hover {
+  opacity: .6;
+  cursor: pointer;
+}

@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="./pages/index.css">
+  <title>Document</title>
+</head>
+<body class="page">
+  <div class="page__container">
+    <header class="header">
+      <img src="./images/header-logo.svg" alt="Логотип Мэсто" class="header__logo">
+    </header>
+    <section class="profile">
+      <img src="./images/profile-avatar.jpg" alt="Жак-Ив Кусто" class="profile__avatar">
+      <div class="profile__about">
+        <div class="profile__name">
+          <h1 class="profile__title">Жак-Ив Кусто</h1>
+          <button class="profile__open-window">
+            <img src="./images/profile-button.svg" alt="кнопка открытия окна" class="profile__open-window-button">
+          </button>
+        </div>
+        <p class="profile__subtitle">Исследователь океана</p>
+      </div>
+      <div class="profile__button">
+        <img src="./images/profile-plus.svg" alt="кнопка открытия окна" class="profile__button-plus">
+      </div>
+    </section>
+    <section class="elements">
+      <div class="element">
+        <figure class="element__card">
+          <img src="./images/elements-karachaevsk.jpg" alt="Карачаевск" class="element__image">
+          <figcaption>
+            <h2 class="element__title">Карачаевск</h2>
+          </figcaption>
+        </figure>
+        <button class="element__button-like">
+          <img src="./images/element-like.svg" alt="Поставить лайк" class="element__like">
+        </button>
+      </div>
+      <div class="element">
+        <figure class="element__card">
+          <img src="./images/elements-elbrus.jpg" alt="Гора Эльбрус" class="element__image">
+          <figcaption>
+            <h2 class="element__title">Гора Эльбрус</h2>
+          </figcaption>
+        </figure>
+        <button class="element__button-like">
+          <img src="./images/element-like.svg" alt="Поставить лайк" class="element__like">
+        </button>
+      </div>
+      <div class="element">
+        <figure class="element__card">
+          <img src="./images/elements-dombai.jpg" alt="Домбай" class="element__image">
+          <figcaption>
+            <h2 class="element__title">Домбай</h2>
+          </figcaption>
+        </figure>
+        <button class="element__button-like">
+          <img src="./images/element-like.svg" alt="Поставить лайк" class="element__like">
+        </button>
+      </div>
+      <div class="element">
+        <figure class="element__card">
+          <img src="./images/elements-elbrus.jpg" alt="Гора Эльбрус" class="element__image">
+          <figcaption>
+            <h2 class="element__title">Гора Эльбрус</h2>
+          </figcaption>
+        </figure>
+        <button class="element__button-like">
+          <img src="./images/element-like.svg" alt="Поставить лайк" class="element__like">
+        </button>
+      </div>
+      <div class="element">
+        <figure class="element__card">
+          <img src="./images/elements-dombai.jpg" alt="Домбай" class="element__image">
+          <figcaption>
+            <h2 class="element__title">Домбай</h2>
+          </figcaption>
+        </figure>
+        <button class="element__button-like">
+          <img src="./images/element-like.svg" alt="Поставить лайк" class="element__like">
+        </button>
+      </div>
+      <div class="element">
+        <figure class="element__card">
+          <img src="./images/elements-karachaevsk.jpg" alt="Карачаево-Черкессия" class="element__image">
+          <figcaption>
+            <h2 class="element__title">Карачаево-Черкессия</h2>
+          </figcaption>
+        </figure>
+        <button class="element__button-like">
+          <img src="./images/element-like.svg" alt="Поставить лайк" class="element__like">
+        </button>
+      </div>
+    </section>
+    <footer class="footer">
+      <p class="footer__copyright">&copy; 2020 Mesto Russia</p>
+    </footer>
+    <div class="popup">
+      <div class="popup__container">
+        <button class="popup__close-button">
+          <img class="popup__close-img" src="./images/popup-close.svg" alt="кнопка закрытия окна">
+        </button>
+        <form class="popup__form">
+          <h3 class="popup__title">Редактировать профиль</h3>
+          <fildset class="popup__profile">
+            <input type="text" name="firstname" placeholder="Жак-Ив Кусто" class="popup__profile-item popup__profile-item_name">
+            <input type="text" name="proffesion" placeholder="Исследователь" class="popup__profile-item popup__profile-item_job">
+          </fildset>
+          <button type="submit" class="popup__profile-save">Сохранить</button>
+        </form>
+      </div>
+    </div>
+  </div>
+  <script src="./scripts/index.js"></script>
+</body>
+</html>

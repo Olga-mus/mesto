@@ -1,0 +1,16 @@
+.popup__profile-item {
+  font-family: "Inter", "Arial", sans-serif;
+  font-size: 14px;
+  padding-top: 30px;
+  padding-bottom: 13px;
+  box-sizing: border-box;
+  border: none;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+  width: 358px;
+}
+
+@media screen and (max-width: 620px) {
+  .popup__profile-item {
+    width: 238px;
+  }
+}

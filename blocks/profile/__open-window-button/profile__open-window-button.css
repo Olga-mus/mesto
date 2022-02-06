@@ -1,0 +1,9 @@
+.profile__open-window-button {
+  max-width: 24px;
+}
+
+@media screen and (max-width: 620px) {
+  .profile__open-window-button {
+    max-width: 18px;
+  }
+}
