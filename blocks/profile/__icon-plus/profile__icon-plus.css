@@ -1,9 +1,9 @@
-.profile__button-plus {
+.profile__icon-plus {
   max-width: 22px;
 }
 
 @media screen and (max-width: 620px) {
-  .profile__button-plus {
+  .profile__icon-plus {
     max-width: 16px;
   }
 }

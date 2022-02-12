@@ -19,14 +19,14 @@
           <div class="profile__name">
             <h1 class="profile__title">Жак-Ив Кусто</h1>
             <button class="profile__open-window">
-              <img src="./images/profile-button.svg" alt="кнопка открытия окна" class="profile__open-window-button">
+              <img src="./images/profile-button.svg" alt="редактирование профиля" class="profile__open-window-icon">
             </button>
           </div>
           <p class="profile__subtitle">Исследователь океана</p>
         </div>
-        <div class="profile__button">
-          <img src="./images/profile-plus.svg" alt="кнопка открытия окна" class="profile__button-plus">
-        </div>
+        <button class="profile__button">
+          <img src="./images/profile-plus.svg" alt="добавление места" class="profile__icon-plus">
+        </button>
       </section>
       <section class="elements">
         <div class="element">
@@ -96,7 +96,7 @@
           </button>
         </div>
       </section>
-    </main>  
+    </main>
     <footer class="footer">
       <p class="footer__copyright">&copy; 2020 Mesto Russia</p>
     </footer>
@@ -105,13 +105,13 @@
         <button class="popup__close-button">
           <img class="popup__close-img" src="./images/popup-close.svg" alt="кнопка закрытия окна">
         </button>
-        <form class="popup__form">
+        <form class="popup__form" name="edit_profile">
           <h3 class="popup__title">Редактировать профиль</h3>
           <fieldset class="popup__profile">
-            <input type="text" name="firstname" placeholder="Жак-Ив Кусто" class="popup__profile-item popup__profile-item_name">
-            <input type="text" name="proffesion" placeholder="Исследователь" class="popup__profile-item popup__profile-item_job">
+            <input type="text" name="firstname" placeholder="Введите имя" class="popup__input popup__input_type_name">
+            <input type="text" name="proffesion" placeholder="Введите вид деятельности" class="popup__input popup__input_type_job">
           </fieldset>
-          <button type="submit" class="popup__profile-save">Сохранить</button>
+          <button type="submit" class="popup__save-button">Сохранить</button>
         </form>
       </div>
     </div>
