@@ -2,9 +2,20 @@
   border: none;
   background: black;
   padding: 0;
+  width: 24px;
+  height: 24px;
+  background-image: url("../../../images/profile-button.svg");
+  background-size: cover;
 }
 
 .profile__open-window:hover {
   opacity: .6;
   cursor: pointer;
+}
+
+@media screen and (max-width: 620px) {
+  .profile__open-window {
+    width: 18px;
+    height: 18px;
+  }
 }
