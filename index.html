@@ -5,7 +5,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="./pages/index.css">
-  <title>Mesto</title>
+  <title>Document</title>
 </head>
 <body class="page">
   <div class="page__container">
@@ -25,66 +25,6 @@
         <button class="profile__button"></button>
       </section>
       <section class="elements">
-        <div class="element">
-          <figure class="element__card">
-            <img src="./images/elements-karachaevsk.jpg" alt="Карачаевск" class="element__image">
-            <figcaption>
-              <h2 class="element__title">Карачаевск</h2>
-            </figcaption>
-          </figure>
-          <button class="element__button-like">
-          </button>
-        </div>
-        <div class="element">
-          <figure class="element__card">
-            <img src="./images/elements-elbrus.jpg" alt="Гора Эльбрус" class="element__image">
-            <figcaption>
-              <h2 class="element__title">Гора Эльбрус</h2>
-            </figcaption>
-          </figure>
-          <button class="element__button-like">
-          </button>
-        </div>
-        <div class="element">
-          <figure class="element__card">
-            <img src="./images/elements-dombai.jpg" alt="Домбай" class="element__image">
-            <figcaption>
-              <h2 class="element__title">Домбай</h2>
-            </figcaption>
-          </figure>
-          <button class="element__button-like">
-          </button>
-        </div>
-        <div class="element">
-          <figure class="element__card">
-            <img src="./images/elements-elbrus.jpg" alt="Гора Эльбрус" class="element__image">
-            <figcaption>
-              <h2 class="element__title">Гора Эльбрус</h2>
-            </figcaption>
-          </figure>
-          <button class="element__button-like">
-          </button>
-        </div>
-        <div class="element">
-          <figure class="element__card">
-            <img src="./images/elements-dombai.jpg" alt="Домбай" class="element__image">
-            <figcaption>
-              <h2 class="element__title">Домбай</h2>
-            </figcaption>
-          </figure>
-          <button class="element__button-like">
-          </button>
-        </div>
-        <div class="element">
-          <figure class="element__card">
-            <img src="./images/elements-karachaevsk.jpg" alt="Карачаево-Черкессия" class="element__image">
-            <figcaption>
-              <h2 class="element__title">Карачаево-Черкессия</h2>
-            </figcaption>
-          </figure>
-          <button class="element__button-like">
-          </button>
-        </div>
       </section>
     </main>
     <footer class="footer">
@@ -105,7 +45,48 @@
         </form>
       </div>
     </div>
+    <div class="popup popup_place">
+      <div class="popup__container">
+        <button class="popup__close-button popup__close-button_place">
+          <img class="popup__close-img" src="./images/popup-close.svg" alt="кнопка закрытия окна">
+        </button>
+        <form class="popup__form popup__form_place">
+          <h3 class="popup__title">Новое место</h3>
+          <fieldset class="popup__profile">
+            <input type="text" name="card" placeholder="Название" class="popup__input popup__input_type_card">
+            <input type="text" name="link" placeholder="Ссылка на картинку" class="popup__input popup__input_type_link">
+          </fieldset>
+          <button type="submit" class="popup__save-button">Сохранить</button>
+        </form>
+      </div>
+    </div>
+    <div class="popup-image">
+      <figure class="popup-image__info">
+        <button class="popup-image__close-button">
+          <img class="popup__close-img" src="./images/popup-close.svg" alt="кнопка закрытия окна">
+        </button>
+        <img src="./images/profile-avatar.jpg" alt="" class="popup-image__view">
+        <figcaption>
+          <p class="popup-image__title">xzczcvzczc</p>
+        </figcaption>
+      </figure>
+    </div>
   </div>
+  <template id="card_template">
+    <div class="element">
+      <figure class="element__card">
+        <img src="./images/elements-karachaevsk.jpg" alt="Карачаевск" class="element__image">
+        <figcaption>
+          <h2 class="element__title">Карачаевск</h2>
+        </figcaption>
+      </figure>
+      <button class="element__button-like">
+      </button>
+      <button class="element__button-delete">
+        <img class="element__delete" src="./images/element-delete.svg" alt="Удалить">
+      </button>
+    </div>
+  </template>
   <script src="./scripts/index.js"></script>
 </body>
 </html>

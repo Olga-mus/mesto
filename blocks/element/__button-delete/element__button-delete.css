@@ -1,0 +1,14 @@
+.element__button-delete {
+  padding: 0;
+  background-color: transparent;
+  border: none;
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  z-index: 1;
+}
+
+.element__button-delete:hover {
+  opacity: .6;
+  cursor: pointer;
+}

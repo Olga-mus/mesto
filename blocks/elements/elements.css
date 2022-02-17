@@ -1,9 +1,10 @@
 .elements {
+  background-color: #000;
   max-width: 880px;
   margin: 0 auto;
   padding-top: 50px;
   display: grid;
-  grid-template-columns: auto auto auto;
+  grid-template-columns: repeat(3, 282px);
   grid-column-gap: 17px;
   grid-row-gap: 20px;
   min-height: 744px;
