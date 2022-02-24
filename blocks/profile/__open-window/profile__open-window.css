@@ -6,6 +6,9 @@
   height: 24px;
   background-image: url("../../../images/profile-button.svg");
   background-size: cover;
+  position: absolute;
+  right: -42px;
+  top: 18px;
 }
 
 .profile__open-window:hover {
@@ -13,9 +16,17 @@
   cursor: pointer;
 }
 
+@media screen and (max-width: 920px) {
+  .profile__open-window {
+    top: 44px;
+  }
+}
+
 @media screen and (max-width: 620px) {
   .profile__open-window {
+    top: 35px;
     width: 18px;
     height: 18px;
+    right: -28px;
   }
 }

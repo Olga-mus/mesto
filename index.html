@@ -16,10 +16,8 @@
       <section class="profile">
         <img src="./images/profile-avatar.jpg" alt="Жак-Ив Кусто" class="profile__avatar">
         <div class="profile__about">
-          <div class="profile__name">
-            <h1 class="profile__title">Жак-Ив Кусто</h1>
-            <button class="profile__open-window"></button>
-          </div>
+          <h1 class="profile__title">Жак-Ив Кусто</h1>
+          <button class="profile__open-window"></button>
           <p class="profile__subtitle">Исследователь океана</p>
         </div>
         <button class="profile__button"></button>
@@ -30,7 +28,7 @@
     <footer class="footer">
       <p class="footer__copyright">&copy; 2020 Mesto Russia</p>
     </footer>
-    <div class="popup">
+    <div class="popup popup_input-window" id="popup_edit-profile">
       <div class="popup__container">
         <button class="popup__close-button"></button>
         <form class="popup__form" name="edit_profile">
@@ -43,7 +41,7 @@
         </form>
       </div>
     </div>
-    <div class="popup popup_place">
+    <div class="popup popup_input-window" id="popup_place">
       <div class="popup__container">
         <button class="popup__close-button popup__close-button_place"></button>
         <form class="popup__form popup__form_place">
@@ -56,12 +54,12 @@
         </form>
       </div>
     </div>
-    <div class="popup-image">
-      <figure class="popup-image__info">
-        <button class="popup-image__close-button"></button>
-        <img src="./images/profile-avatar.jpg" alt="" class="popup-image__view">
+    <div class="popup popup_image">
+      <figure class="popup__info">
+        <button class="popup__image-close-button"></button>
+        <img src="./images/profile-avatar.jpg" alt="" class="popup__view">
         <figcaption>
-          <p class="popup-image__title"></p>
+          <p class="popup__image-title"></p>
         </figcaption>
       </figure>
     </div>
