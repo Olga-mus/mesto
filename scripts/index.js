@@ -55,7 +55,6 @@ const cards = [{
   }
 ];
 
-
 btnOpenEditProfile.addEventListener('click', function() {
   inputTextEditProfile();
   openPopup(popupEditProfile);
@@ -95,17 +94,13 @@ function inputTextEditProfile() {
 // Обработчик «отправки» формы
 function handleProfileFormSubmit(evt) {
   evt.preventDefault(); // Эта строчка отменяет стандартную отправку формы.
-  // Получите значение полей из свойства value
-  // Вставьте новые значения с помощью textContent
   textTitleEditProfile.textContent = inputNameEditProfile.value;
   textSubtitleEditProfile.textContent = inputJobEditProfile.value;
   closePopup(popupEditProfile);
 }
 
-//рендер массива(отрисовка)
 function renderCards() {
-  cards.forEach(renderCard); //для каждой карточки назначаем функцию renderItem
-  renderCard(listElement, createCard(card.name, card.link) );
+  cards.forEach (ell =>renderCard (createCard(ell.name, ell.link))); //вызываем функцию создания карточки для каждого элемента массива
 }
 
 function createCard(name, link) {
@@ -117,38 +112,18 @@ function createCard(name, link) {
   return newCard;
 }
 
-function renderCard(container, card) {
-  container.prepend(card);
-}
-
-function renderCard(item) {
-  const newCard = template.cloneNode(true); // копируем темплейт вместе с контентом, вкладываем в переменную newCard
-  newCard.querySelector('.element__title').textContent = item.name; //меняем текст в переменной  newCard (темплейт)
-  newCard.querySelector('.element__image').src = item.link; //меняем картинку в переменной  newCard (темплейт)
-  newCard.querySelector('.element__image').alt = item.name; //меняем alt у картинки в переменной  newCard (темплейт)
-  addListeners(newCard); // добавляем слушатель на темплейт (вызываем функцию)
-  addCardContainer(newCard);
-}
-
-function addCardContainer(card) {
-  containerPlace.appendChild(card);
+function renderCard(card) {
+  containerPlace.prepend(card);
 }
 
 //Добавляем карточку в контейнер
 function addCard(event) {
   event.preventDefault(); //отменяем дефолтную отправку формы
-  const newCard = template.cloneNode(true); // копируем темплейт вместе с контентом, вкладываем в переменную newCard
-  newCard.querySelector('.element__title').textContent = inputTitle.value; //меняем текст в переменной  newCard (темплейт) в поле ввода
-  newCard.querySelector('.element__image').src = inputImage.value; //меняем картинку в переменной  newCard (темплейт) в поле ввода
-  newCard.querySelector('.element__image').alt = inputTitle.value; //меняем alt у картинки в переменной  newCard (темплейт)
-  addListeners(newCard); // добавляем слушатель на темплейт (вызываем функцию)
-  addCardContainerBegin(newCard);
+  const name = inputTitle.value;
+  const link = inputImage.value;
+  renderCard (createCard(name, link));
   resetForm();
   closePopup(popupNewPlace);
-}
-
-function addCardContainerBegin(card) {
-  containerPlace.prepend(card);
 }
 
 // Добавляем слушателей на карточку с местом
@@ -171,9 +146,7 @@ function handleView(event) {
   imgImageWindow.alt = event.target.closest('.element__image').alt; // на каком элементе произошел клик (меняем alt картинки)
   textTitleImageWindow.textContent = event.target.closest('.element__image').alt; // на каком элементе произошел клик (меняем текст картинки)
   openPopup(popupImageWindow);
-  //openPopup(popupImageWindow); //при клике на картинку добавляется класс на открытие окна
 }
-
 
 function resetForm() {
   savePlace.reset();
