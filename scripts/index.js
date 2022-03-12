@@ -1,20 +1,18 @@
 //Находим ссылки на элементы попапа Редактировать профиль EditProfile
 const btnOpenEditProfile = document.querySelector('.profile__open-window'); //кнопка открытия попапа
 const popupEditProfile = document.querySelector('#popup_edit-profile'); // попап  Редактировать профиль
-const btnCloseEditProfile = document.querySelector('.popup__close-button'); //кнопка закрытия попапа
-const btnSubmitEditProfile = document.querySelector('.popup__profile-save'); //кнопка сохранения попапа и отправки
-const formEditProfile = document.querySelector('.popup__form');// Находим форму Редактировать профиль в DOM
+const btnSubmitEditProfile = document.querySelector('.popup__save-button'); //кнопка сохранения попапа и отправки
+const formEditProfile = document.querySelector('.popup__form'); // Находим форму Редактировать профиль в DOM
 const inputNameEditProfile = document.querySelector('.popup__input_type_name'); // инпут имя в попапе Редактировать профиль
 const inputJobEditProfile = document.querySelector('.popup__input_type_job'); // инпут деятельности в попапе Редактировать профиль
-const textTitleEditProfile = document.querySelector('.profile__title');// заголовок в попапе Редактировать профиль
-const textSubtitleEditProfile = document.querySelector('.profile__subtitle');// подзаголовок в попапе Редактировать профиль
+const textTitleEditProfile = document.querySelector('.profile__title'); // заголовок в попапе Редактировать профиль
+const textSubtitleEditProfile = document.querySelector('.profile__subtitle'); // подзаголовок в попапе Редактировать профиль
 
 //Находим ссылки на элементы попапа Новое место NewPlace
 const popupNewPlace = document.querySelector('#popup_place'); // попап Новое место
 const btnOpenNewPlace = document.querySelector('.profile__button'); //кнопка открытия попапа Новое место
-const btnCloseNewPlace = document.querySelector('.popup__close-button_place'); //закрытия попапа Новое место
 const btnSubmitNewPlace = document.querySelector('.popup__profile-save_place'); //кнопка сохранения попапа Новое место и отправки
-
+const formNewPlace = document.querySelector('.popup__form_place') // Находим форму Новое место в DOM
 //Находим ссылки на элементы (добавление новых карточек места)
 const inputTitle = document.querySelector('.popup__input_type_card'); //ввести название картинки
 const inputImage = document.querySelector('.popup__input_type_link'); //ввести ссылку на картинку
@@ -23,10 +21,13 @@ const containerPlace = document.querySelector('.elements'); //контейнер
 const template = document.querySelector('#card_template').content; //ссылка на темплейт с контентом
 
 //Находим ссылки на попап для просмотра изображения ImageWindow
-const btnCloseImageWindow = document.querySelector('.popup__image-close-button'); // ссылка на кнопку закрытия попапа просмотра изображений
 const popupImageWindow = document.querySelector('.popup_image'); // получаем ссылку на попап окна новое изображение
 const imgImageWindow = document.querySelector('.popup__view'); //получаем ссылку на картинку новое изображение
 const textTitleImageWindow = document.querySelector('.popup__image-title'); //получаем ссылку на текст "новое изображение"
+
+//Находим оверлэй
+const popups = document.querySelectorAll('.popup')
+
 
 // Создаем массив из карточек «из коробки»
 const cards = [{
@@ -63,28 +64,36 @@ btnOpenNewPlace.addEventListener('click', function() {
   openPopup(popupNewPlace);
 });
 
-btnCloseEditProfile.addEventListener('click', function() {
-  closePopup(popupEditProfile);
-});
-
-btnCloseNewPlace.addEventListener('click', function() {
-  closePopup(popupNewPlace);
-});
-
-btnCloseImageWindow.addEventListener('click', function() {
-  closePopup(popupImageWindow);
-});
-
 formEditProfile.addEventListener('submit', handleProfileFormSubmit); // отправка формы Редакттровать профиль
 
 savePlace.addEventListener('submit', addCard); //добавляем слушателя на кнопку Сохранить
 
+popups.forEach((popup) => {
+  popup.addEventListener('click', (evt) => {
+    if (evt.target.classList.contains('popup_opened')) {
+      closePopup(popup)
+    }
+    if (evt.target.classList.contains('popup__close-button')) {
+      closePopup(popup)
+    }
+  })
+})
+
+function closeByEscape(evt) {
+  if (evt.key === 'Escape') {
+    const openedPopup = document.querySelector('.popup_opened');
+    closePopup(openedPopup);
+  }
+}
+
 function openPopup(popup) {
   popup.classList.add('popup_opened');
+  document.addEventListener('keydown', closeByEscape);
 }
 
 function closePopup(popup) {
   popup.classList.remove('popup_opened');
+  document.removeEventListener('keydown', closeByEscape);
 }
 
 function inputTextEditProfile() {
@@ -100,7 +109,7 @@ function handleProfileFormSubmit(evt) {
 }
 
 function renderCards() {
-  cards.forEach (ell =>renderCard (createCard(ell.name, ell.link))); //вызываем функцию создания карточки для каждого элемента массива
+  cards.forEach(ell => renderCard(createCard(ell.name, ell.link))); //вызываем функцию создания карточки для каждого элемента массива
 }
 
 function createCard(name, link) {
@@ -121,7 +130,7 @@ function addCard(event) {
   event.preventDefault(); //отменяем дефолтную отправку формы
   const name = inputTitle.value;
   const link = inputImage.value;
-  renderCard (createCard(name, link));
+  renderCard(createCard(name, link));
   resetForm();
   closePopup(popupNewPlace);
 }
