@@ -60,6 +60,7 @@ btnOpenEditProfile.addEventListener('click', function() {
   inputTextEditProfile();
   openPopup(popupEditProfile);
 });
+
 btnOpenNewPlace.addEventListener('click', function() {
   openPopup(popupNewPlace);
 });
@@ -69,7 +70,7 @@ formEditProfile.addEventListener('submit', handleProfileFormSubmit); // отпр
 savePlace.addEventListener('submit', addCard); //добавляем слушателя на кнопку Сохранить
 
 popups.forEach((popup) => {
-  popup.addEventListener('click', (evt) => {
+  popup.addEventListener('mousedown', (evt) => {
     if (evt.target.classList.contains('popup_opened')) {
       closePopup(popup)
     }
@@ -115,8 +116,9 @@ function renderCards() {
 function createCard(name, link) {
   const newCard = template.cloneNode(true);
   newCard.querySelector('.element__title').textContent = name;
-  newCard.querySelector('.element__image').src = link;
-  newCard.querySelector('.element__image').alt = name;
+  const image = newCard.querySelector('.element__image');
+  image.src = link;
+  image.alt = name;
   addListeners(newCard);
   return newCard;
 }
@@ -132,6 +134,10 @@ function addCard(event) {
   const link = inputImage.value;
   renderCard(createCard(name, link));
   resetForm();
+
+  const disabled = formNewPlace.querySelector('.popup__save-button')
+  disabled.setAttribute('disabled', true)
+  disabled.classList.add('popup__save-button_disabled')
   closePopup(popupNewPlace);
 }
 
@@ -151,9 +157,9 @@ function handleLike(event) {
 }
 //Открытие окна просмотра изображений
 function handleView(event) {
-  imgImageWindow.src = event.target.closest('.element__image').src; // на каком элементе произошел клик (меняем картинку)
-  imgImageWindow.alt = event.target.closest('.element__image').alt; // на каком элементе произошел клик (меняем alt картинки)
-  textTitleImageWindow.textContent = event.target.closest('.element__image').alt; // на каком элементе произошел клик (меняем текст картинки)
+  imgImageWindow.src = event.target.src; // на каком элементе произошел клик (меняем картинку)
+  imgImageWindow.alt = event.target.alt; // на каком элементе произошел клик (меняем alt картинки)
+  textTitleImageWindow.textContent = event.target.alt; // на каком элементе произошел клик (меняем текст картинки)
   openPopup(popupImageWindow);
 }
 
