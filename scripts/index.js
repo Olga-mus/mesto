@@ -135,9 +135,9 @@ function addCard(event) {
   renderCard(createCard(name, link));
   resetForm();
 
-  const disabled = formNewPlace.querySelector('.popup__save-button')
-  disabled.setAttribute('disabled', true)
-  disabled.classList.add('popup__save-button_disabled')
+  const cardSubmitButton = event.submitter
+  cardSubmitButton.setAttribute('disabled', true)
+  cardSubmitButton.classList.add('popup__save-button_disabled')
   closePopup(popupNewPlace);
 }
 
