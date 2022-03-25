@@ -1,3 +1,8 @@
+import {openPopup, closeByEscape, closePopup} from './utils.js';
+import {imgImageWindow, textTitleImageWindow, popupImageWindow } from './constants.js';
+import { FormValidator } from './FormValidator.js';
+import { Card } from './Card.js';
+
 //Находим ссылки на элементы попапа Редактировать профиль EditProfile
 const btnOpenEditProfile = document.querySelector('.profile__open-window'); //кнопка открытия попапа
 const popupEditProfile = document.querySelector('#popup_edit-profile'); // попап  Редактировать профиль
@@ -18,12 +23,32 @@ const inputTitle = document.querySelector('.popup__input_type_card'); //ввес
 const inputImage = document.querySelector('.popup__input_type_link'); //ввести ссылку на картинку
 const savePlace = document.querySelector('.popup__form_place'); // ссылка на форму Новое место
 const containerPlace = document.querySelector('.elements'); //контейнер для добавления новых карточек
-const template = document.querySelector('#card_template').content; //ссылка на темплейт с контентом
+// const template = document.querySelector('#card_template').content; //ссылка на темплейт с контентом
 
 //Находим ссылки на попап для просмотра изображения ImageWindow
-const popupImageWindow = document.querySelector('.popup_image'); // получаем ссылку на попап окна новое изображение
-const imgImageWindow = document.querySelector('.popup__view'); //получаем ссылку на картинку новое изображение
-const textTitleImageWindow = document.querySelector('.popup__image-title'); //получаем ссылку на текст "новое изображение"
+// const popupImageWindow = document.querySelector('.popup_image'); // получаем ссылку на попап окна новое изображение
+// const imgImageWindow = document.querySelector('.popup__view'); //получаем ссылку на картинку новое изображение
+// const textTitleImageWindow = document.querySelector('.popup__image-title'); //получаем ссылку на текст "новое изображение"
+
+const addCardForm = document.querySelector('.popup__form_place');
+const editForm = document.querySelector('.popup__form');
+
+const settings = {
+  formSelector: '.popup__form',
+  inputSelector: '.popup__input',
+  submitButtonSelector: '.popup__save-button',
+  inactiveButtonClass: 'popup__button_disabled',
+  inputErrorClass: 'popup__input_type_error',
+  errorClass: 'popup__error-message_visible',
+  submitButtonDisabled: 'popup__save-button_disabled'
+}
+
+const editProfileValidator = new FormValidator(settings, editForm);
+const addCardValidator = new FormValidator(settings, addCardForm);
+
+editProfileValidator.enableValidation();
+addCardValidator.enableValidation();
+
 
 //Находим оверлэй
 const popups = document.querySelectorAll('.popup')
@@ -57,14 +82,15 @@ const cards = [{
 ];
 
 btnOpenEditProfile.addEventListener('click', function() {
+  editProfileValidator.resetValidation()
   inputTextEditProfile();
   openPopup(popupEditProfile);
 });
 
 btnOpenNewPlace.addEventListener('click', function() {
+  addCardValidator.resetValidation()
   openPopup(popupNewPlace);
 });
-
 formEditProfile.addEventListener('submit', handleProfileFormSubmit); // отправка формы Редакттровать профиль
 
 savePlace.addEventListener('submit', addCard); //добавляем слушателя на кнопку Сохранить
@@ -80,22 +106,22 @@ popups.forEach((popup) => {
   })
 })
 
-function closeByEscape(evt) {
-  if (evt.key === 'Escape') {
-    const openedPopup = document.querySelector('.popup_opened');
-    closePopup(openedPopup);
-  }
-}
+// function closeByEscape(evt) {
+//   if (evt.key === 'Escape') {
+//     const openedPopup = document.querySelector('.popup_opened');
+//     closePopup(openedPopup);
+//   }
+// }
 
-function openPopup(popup) {
-  popup.classList.add('popup_opened');
-  document.addEventListener('keydown', closeByEscape);
-}
+// function openPopup(popup) {
+//   popup.classList.add('popup_opened');
+//   document.addEventListener('keydown', closeByEscape);
+// }
 
-function closePopup(popup) {
-  popup.classList.remove('popup_opened');
-  document.removeEventListener('keydown', closeByEscape);
-}
+// function closePopup(popup) {
+//   popup.classList.remove('popup_opened');
+//   document.removeEventListener('keydown', closeByEscape);
+// }
 
 function inputTextEditProfile() {
   inputNameEditProfile.value = textTitleEditProfile.textContent;
@@ -109,22 +135,45 @@ function handleProfileFormSubmit(evt) {
   closePopup(popupEditProfile);
 }
 
+
+
 function renderCards() {
   cards.forEach(ell => renderCard(createCard(ell.name, ell.link))); //вызываем функцию создания карточки для каждого элемента массива
 }
 
-function createCard(name, link) {
-  const newCard = template.cloneNode(true);
-  newCard.querySelector('.element__title').textContent = name;
-  const image = newCard.querySelector('.element__image');
-  image.src = link;
-  image.alt = name;
-  addListeners(newCard);
-  return newCard;
+
+
+// function createCard(name, link) {
+//   const newCard = template.cloneNode(true);
+//   newCard.querySelector('.element__title').textContent = name;
+//   const image = newCard.querySelector('.element__image');
+//   image.src = link;
+//   image.alt = name;
+//   addListeners(newCard);
+//   return newCard;
+// }
+//создание карточки
+// function renderCard(card) {
+//   const card = new Card(data);
+//   card.createCard();
+//   containerPlace.prepend(card);
+// }
+
+// import {imgImageWindow, textTitleImageWindow, popupImageWindow} from './constants.js';
+// import { openPopup } from './utils.js';
+
+const handleView = (name, link) => {
+  imgImageWindow.src = link; // на каком элементе произошел клик (меняем картинку)
+  imgImageWindow.alt = name; // на каком элементе произошел клик (меняем alt картинки)
+  textTitleImageWindow.textContent = name; // на каком элементе произошел клик (меняем текст картинки)
+  openPopup(popupImageWindow);
 }
 
+
 function renderCard(card) {
-  containerPlace.prepend(card);
+  const copyCard = new Card(data,'#card_template', handleView());
+  const newCard = card.createCard();
+  containerPlace.prepend(newCard);
 }
 
 //Добавляем карточку в контейнер
@@ -141,27 +190,27 @@ function addCard(event) {
   closePopup(popupNewPlace);
 }
 
-// Добавляем слушателей на карточку с местом
-function addListeners(card) {
-  card.querySelector('.element__button-delete').addEventListener('click', handleDelete); //находим кнопку удаления, добавляем слушателя (клик)
-  card.querySelector('.element__button-like').addEventListener('click', handleLike); //находим кнопку лайк, добавляем слушателя (клик)
-  card.querySelector('.element__image').addEventListener('click', handleView); //находим картинку, добавляем слушателя (клик)
-}
+// // Добавляем слушателей на карточку с местом
+// function addListeners(card) {
+//   card.querySelector('.element__button-delete').addEventListener('click', handleDelete); //находим кнопку удаления, добавляем слушателя (клик)
+//   card.querySelector('.element__button-like').addEventListener('click', handleLike); //находим кнопку лайк, добавляем слушателя (клик)
+//   card.querySelector('.element__image').addEventListener('click', handleView); //находим картинку, добавляем слушателя (клик)
+// }
 
-function handleDelete(event) {
-  event.target.closest('.element').remove(); // удаляем картинку
-}
+// function handleDelete(event) {
+//   event.target.closest('.element').remove(); // удаляем картинку
+// }
 
-function handleLike(event) {
-  event.target.classList.toggle('element__like_active'); //меняем лайк и дизлайк
-}
+// function handleLike(event) {
+//   event.target.classList.toggle('element__like_active'); //меняем лайк и дизлайк
+// }
 //Открытие окна просмотра изображений
-function handleView(event) {
-  imgImageWindow.src = event.target.src; // на каком элементе произошел клик (меняем картинку)
-  imgImageWindow.alt = event.target.alt; // на каком элементе произошел клик (меняем alt картинки)
-  textTitleImageWindow.textContent = event.target.alt; // на каком элементе произошел клик (меняем текст картинки)
-  openPopup(popupImageWindow);
-}
+// function handleView(event) {
+//   imgImageWindow.src = event.target.src; // на каком элементе произошел клик (меняем картинку)
+//   imgImageWindow.alt = event.target.alt; // на каком элементе произошел клик (меняем alt картинки)
+//   textTitleImageWindow.textContent = event.target.alt; // на каком элементе произошел клик (меняем текст картинки)
+//   openPopup(popupImageWindow);
+// }
 
 function resetForm() {
   savePlace.reset();
