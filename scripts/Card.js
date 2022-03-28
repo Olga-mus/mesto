@@ -1,89 +1,61 @@
-// const handleView = (name, link) => {
-//   imgImageWindow.src = link; // на каком элементе произошел клик (меняем картинку)
-//   imgImageWindow.alt = name; // на каком элементе произошел клик (меняем alt картинки)
-//   textTitleImageWindow.textContent = name; // на каком элементе произошел клик (меняем текст картинки)
-//   openPopup(popupImageWindow);
-// }
-
+// Экспортровать по умолчанию
 export class Card {
-  constructor(data, cardTemplateSelector, handleCardClick) {//{name, link }, '#card_template'
-    this._template = document.querySelector(cardTemplateSelector).content; //ссылка на темплейт с контентом
-//templete = cardTemplate
+  constructor(data, cardTemplateSelector, handleCardClick) {
+    this._template = document.querySelector(cardTemplateSelector).content;
     this._name = data.name;
     this._link = data.link;
     this._handleCardClick = handleCardClick;
+
+    this._handleLike = this._handleLike.bind(this)
   }
 
-  _handleDelete = () => {
-    this._newCard.remove(); // удаляем картинку
+  // Убрать стрелочную  функцию
+  _handleDelete() {
+    this._newCard.remove();
   }
 
-  _handleLike = () => {
-    this._likeButton.classList.toggle('element__like_active'); //меняем лайк и дизлайк
+  // Убрать стрелочную функцию
+  _handleLike() {
+    this._likeButton.classList.toggle('element__like_active');
   }
 
+  _setEventListeners() {
+    // Не находит кнопку, потому что она в темплейте. Это значит, что в DOM ее не существует?!. Если делать так, то нужно искать кнопку в методе createCard
+    // const deleteButton = document.querySelector('.element__button-delete');
+    // Добавить стрелочную функцию (чтобы не потерять контекст, у стрелочной функции нет контекста) или забиндить метод
+    // Добавить _
+    this._deleteButton.addEventListener('click', () => this._handleDelete());
+    // Добавить стрелочную функцию
+    // Добавить _
+    this._likeButton.addEventListener('click', this._handleLike);
+    // cardImage не существует нужно выбрать картинку на созданной карточке -  this._image
+    // В handleCardClick добавить this._
+    this._image.addEventListener('click', () => this._handleCardClick(this._name, this._link));
 
-  // handleView = () => { // = handlePreviewPicture
-  //   imgImageWindow.src = this._link; // на каком элементе произошел клик (меняем картинку)
-  //   imgImageWindow.alt = this._name; // на каком элементе произошел клик (меняем alt картинки)
-  //   textTitleImageWindow.textContent = this._name; // на каком элементе произошел клик (меняем текст картинки)
-  //   openPopup(popupImageWindow);
-  // }
+  }
 
+  _fillCard() {
+    this._newCard.querySelector('.element__title').textContent = this._name;
 
-_setEventListeners() { //выносим слушателей в отдельную функцию
-  const deleteButton = document.querySelector('.element__button-delete'); //кнопка удаления
-  deleteButton.addEventListener('click', this.handleDelete); //подписка на  кнопку удаления
-  this._likeButton.addEventListener('click', this.handleLike); //подписка на кнопку лайк
-  cardImage.addEventListener('click', () => handleCardClick(this._name, this._link)); //подписка на  картинку
+    this._image.src = this._link;
+    this._image.alt = this._name;
+  }
 
-}
+  createCard() {
+    // добавить поиск элемента querySelector('.element')
+    this._newCard = this._template.querySelector('.element').cloneNode(true);
+    // нужно искать не в документе, этой кнопки там не существует, она в темплейте
+    this._likeButton = this._newCard.querySelector('.element__button-like');
+    // Коммент для кнопки удалить выше
+    this._deleteButton = this._newCard.querySelector('.element__button-delete');
+    this._image = this._newCard.querySelector('.element__image');
 
-_fillCard() {
-  this._newCard.querySelector('.element__title').textContent = this._name ;
-
-  this._image.src = this._link;
-  this._image.alt = this._name ;
-}
-
-  createCard() { //=getCardElement
-    //нашли
-    this._newCard = this._template.cloneNode(true); //newCard = cardElement
-    this._likeButton = document.querySelector('.element__button-like'); //кнопка лайка
-    this._image = this._newCard.querySelector('.element__image'); //image = cardImage
-    // this._cardImage = document.querySelector('.element__image');//картинка
-
-    //заполнили
     this._fillCard();
 
-    //подписались
-    _setEventListeners();
+    // добавить this
+    this._setEventListeners();
 
-
-    // addListeners(newCard);
     return this._newCard;
   }
 
-// Добавляем слушателей на карточку с местом
-// addListeners(card) {
-//   card.querySelector('.element__button-delete').addEventListener('click', handleDelete); //находим кнопку удаления, добавляем слушателя (клик)
-//   card.querySelector('.element__button-like').addEventListener('click', handleLike); //находим кнопку лайк, добавляем слушателя (клик)
-//   card.querySelector('.element__image').addEventListener('click', handleView); //находим картинку, добавляем слушателя (клик)
-// }
-
-
 }
-
-
-//в index.js
-// const data = {name: 'name', link: 'link'}
-// import {imgImageWindow, textTitleImageWindow, popupImageWindow} from './constants.js';
-// import { openPopup } from './utils.js';
-// const handleCardClick = () => {
-//   imgImageWindow.src = this._link; // на каком элементе произошел клик (меняем картинку)
-//   imgImageWindow.alt = this._name; // на каком элементе произошел клик (меняем alt картинки)
-//   textTitleImageWindow.textContent = this._name; // на каком элементе произошел клик (меняем текст картинки)
-//   openPopup(popupImageWindow);
-// }
-
-// const card = new Card(data, '#card_template', handleCardClick);
