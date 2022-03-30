@@ -76,9 +76,8 @@ function addCard(event) {
   renderCard({ name, link });
   resetForm();
 
-  const cardSubmitButton = event.submitter
-  cardSubmitButton.setAttribute('disabled', true)
-  cardSubmitButton.classList.add('FormValidator')
+  const cardSubmitButton = event.submitter;
+  cardSubmitButton.classList.add('FormValidator');
   closePopup(popupNewPlace);
 }
 
