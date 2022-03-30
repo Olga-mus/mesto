@@ -77,7 +77,6 @@ function addCard(event) {
   resetForm();
 
   const cardSubmitButton = event.submitter;
-  cardSubmitButton.classList.add('FormValidator');
   closePopup(popupNewPlace);
 }
 
