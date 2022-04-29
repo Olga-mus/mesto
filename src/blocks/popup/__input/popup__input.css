@@ -1,8 +1,9 @@
 .popup__input {
   font-family: "Inter", "Arial", sans-serif;
   font-size: 14px;
-  padding-top: 30px;
-  padding-bottom: 13px;
+  line-height: 1.21;
+  padding-top: 29px;
+  padding-bottom: 10px;
   box-sizing: border-box;
   border: none;
   border-bottom: 1px solid rgba(0, 0, 0, 0.2);
@@ -10,6 +11,10 @@
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
+}
+
+textarea:focus, input:focus{
+  outline: none;
 }
 
 @media screen and (max-width: 620px) {

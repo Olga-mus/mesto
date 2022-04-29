@@ -42,3 +42,6 @@
 @import url("../blocks/profile/__open-window/profile__open-window.css");
 @import url("../blocks/profile/__subtitle/profile__subtitle.css");
 @import url("../blocks/profile/__title/profile__title.css");
+@import url("../blocks/popup/__span-error/popup__span-error.css");
+
+
