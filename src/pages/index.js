@@ -1,10 +1,10 @@
-import {POPUP, USER, CONTAINER_SLR, CARD_TEMPLATE_SLR, VALIDATOR_SETTINGS, INITIAL_CARDS} from '../constants/constants.js';
-import Section from '../constants/Section.js';
-import Card from '../constants/Card.js';
-import PopupWithImage from '../constants/PopupWithImage.js';
-import PopupWithForm from '../constants/PopupWithForm.js';
-import FormValidator from '../constants/FormValidator.js';
-import UserInfo from '../constants/UserInfo.js';
+import {POPUP, USER, CONTAINER_SLR, CARD_TEMPLATE_SLR, VALIDATOR_SETTINGS, INITIAL_CARDS} from '../components/constants.js';
+import Section from '../components/Section.js';
+import Card from '../components/Card.js';
+import PopupWithImage from '../components/PopupWithImage.js';
+import PopupWithForm from '../components/PopupWithForm.js';
+import FormValidator from '../components/FormValidator.js';
+import UserInfo from '../components/UserInfo.js';
 
 import './index.css';
 

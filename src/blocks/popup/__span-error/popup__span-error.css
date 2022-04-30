@@ -1,4 +1,10 @@
 .popup__span-error {
-  height: 16.909px;
-  width: 164px;
+  height: 34.817px;
+  width: 358px;
+}
+
+@media screen and (max-width: 620px) {
+  .popup__span-error {
+    width: 238px;
+  }
 }
