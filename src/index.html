@@ -32,17 +32,13 @@
         <form id="form__edit-profile" class="popup__form" name="edit_profile" novalidate> <!-- ? -->
           <h3 class="popup__title">Редактировать профиль</h3>
           <fieldset class="popup__profile">
-            <label>
+            <label class="popup__field">
               <input id="firstname" type="text" name="firstname" placeholder="Введите имя" class="popup__input popup__input_type_name" required minlength="2" maxlength="40">
-              <div class="popup__span-error">
                 <span class="firstname-error popup__error-message"></span>
-              </div>
             </label>
-            <label>
+            <label class="popup__field">
               <input id="proffesion" type="text" name="proffesion" placeholder="Введите вид деятельности" class="popup__input popup__input_type_job" required minlength="2" maxlength="200">
-              <div class="popup__span-error">
                 <span class="proffesion-error popup__error-message"></span>
-              </div>
             </label>
             </fieldset>
           <button id="submit_edit-profile" type="submit" class="popup__save-button">Сохранить</button>
@@ -57,15 +53,11 @@
           <fieldset class="popup__profile">
             <label class="popup__field">
               <input id="card" type="text" name="name" placeholder="Название" class="popup__input popup__input_type_card" required minlength="2" maxlength="30">
-              <div class="popup__span-error">
                 <span class="card-error popup__error-message"></span>
-              </div>
             </label>
             <label class="popup__field">
               <input id="link" type="url" name="link" placeholder="Ссылка на картинку" class="popup__input popup__input_type_link" required>
-              <div class="popup__span-error">
                 <span class="link-error popup__error-message"></span>
-              </div>
             </label>
           </fieldset>
           <button type="submit" class="popup__save-button">Сохранить</button>

@@ -7,7 +7,6 @@
   box-sizing: border-box;
   border: none;
   border-bottom: 1px solid rgba(0, 0, 0, 0.2);
-  width: 358px;
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
@@ -15,10 +14,4 @@
 
 textarea:focus, input:focus{
   outline: none;
-}
-
-@media screen and (max-width: 620px) {
-  .popup__input {
-    width: 238px;
-  }
 }
