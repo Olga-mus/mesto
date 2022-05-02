@@ -1,4 +1,4 @@
-import {POPUP, USER, CONTAINER_SLR, CARD_TEMPLATE_SLR, VALIDATOR_SETTINGS, INITIAL_CARDS} from '../components/constants.js';
+import {POPUP, USER, CONTAINER_SLR, CARD_TEMPLATE_SLR, VALIDATOR_SETTINGS, INITIAL_CARDS} from '../utils/constants.js';
 import Section from '../components/Section.js';
 import Card from '../components/Card.js';
 import PopupWithImage from '../components/PopupWithImage.js';
