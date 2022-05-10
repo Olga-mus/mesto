@@ -27,11 +27,11 @@ const POPUP = {
     SELECTOR: '.popup_image',
   },
   CONFIRM: {
-    SELECTOR: '.popup__delete-confirm',
+    SELECTOR: '.popup_delete-confirm',
   },
   AVATAR: {
     OPEN: document.querySelector('.profile__button-edit-avatar'),
-    SELECTOR: '.popup__edit-avatar',
+    SELECTOR: '.popup_edit-avatar',
     FORM: document.forms.update_avatar,
   }
 
