@@ -30,4 +30,8 @@ export default class Popup {
     })
   }
 
+  setButtonText(text) {
+    this._buttonText = this._popup.querySelector('form').querySelector('.popup__save-button');
+      this._buttonText.textContent = text;
+  }
 }

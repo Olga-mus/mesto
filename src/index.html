@@ -9,14 +9,17 @@
 <body class="page">
   <div class="page__container">
     <header class="header">
-      <img src="<%=require('./images/header-logo.svg')%>" alt="Логотип Мэсто" class="header__logo">    </header>
+      <img src="<%=require('./images/header-logo.svg')%>" alt="Логотип Мэсто" class="header__logo">
+    </header>
     <main>
       <section class="profile">
-        <img src="<%=require('./images/profile-avatar.jpg')%>" alt="Жак-Ив Кусто" class="profile__avatar">
+        <button class="profile__button-edit-avatar">
+          <img src="<%=require('./images/profile-avatar.jpg')%>" alt="Жак-Ив Кусто" class="profile__avatar">
+        </button>
         <div class="profile__about">
-          <h1 class="profile__title">Жак-Ив Кусто</h1>
+          <h1 class="profile__title"></h1>
           <button class="profile__open-window"></button>
-          <p class="profile__subtitle">Исследователь океана</p>
+          <p class="profile__subtitle"></p>
         </div>
         <button class="profile__button"></button>
       </section>
@@ -64,10 +67,36 @@
         </form>
       </div>
     </div>
+    <div class="popup popup_input-window popup__delete-confirm">
+      <div class="popup__container">
+        <button class="popup__close-button popup__close-button_place"></button>
+        <form class="popup__form popup__form_place" name="add_place" novalidate>
+          <h3 class="popup__title popup__title_confirm">Вы уверены?</h3>
+          <button type="submit" class="popup__save-button popup__save-button_confirm">Да</button>
+        </form>
+      </div>
+    </div>
+
+
+    <div class="popup popup_input-window popup__edit-avatar">
+      <div class="popup__container">
+        <button class="popup__close-button popup__close-button_place"></button>
+        <form class="popup__form popup__form_place" name="update_avatar" novalidate>
+          <h3 class="popup__title">Обновить аватар</h3>
+          <fieldset class="popup__profile">
+            <label class="popup__field">
+              <input id="link" type="url" name="avatar" placeholder="Ссылка на картинку" class="popup__input popup__input_type_link" required>
+                <span class="link-error popup__error-message"></span>
+            </label>
+          </fieldset>
+          <button type="submit" class="popup__save-button">Сохранить</button>
+        </form>
+      </div>
+    </div>
     <div class="popup popup_image">
       <figure class="popup__info">
         <button class="popup__close-button"></button>
-        <img src="./images/profile-avatar.jpg" alt="" class="popup__view">
+        <img class="popup__view">
         <figcaption>
           <p class="popup__image-title"></p>
         </figcaption>
@@ -87,6 +116,8 @@
       <button class="element__button-delete">
         <img class="element__delete" src="<%=require('./images/element-delete.svg')%>" alt="Удалить">
       </button>
+      <span class="element__like-count"></span>
+
     </div>
   </template>
 </body>

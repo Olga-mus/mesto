@@ -4,7 +4,10 @@ export {
   CONTAINER_SLR,
   CARD_TEMPLATE_SLR,
   VALIDATOR_SETTINGS,
-  INITIAL_CARDS
+  TEXT_SAVE,
+  TEXT_SAVE_PROCESSING,
+  TEXT_DELETE,
+  TEXT_DELETE_PROCESSING
 };
 
 const POPUP = {
@@ -23,16 +26,27 @@ const POPUP = {
   IMAGE: {
     SELECTOR: '.popup_image',
   },
+  CONFIRM: {
+    SELECTOR: '.popup__delete-confirm',
+  },
+  AVATAR: {
+    OPEN: document.querySelector('.profile__button-edit-avatar'),
+    SELECTOR: '.popup__edit-avatar',
+    FORM: document.forms.update_avatar,
+  }
+
 }
+
+const CONTAINER_SLR = '.elements';
+
 
 const USER = {
   NAME_SLR: '.profile__title',
   ABOUT_SLR: '.profile__subtitle',
+  AVATAR_SLR: '.profile__avatar'
 }
 
-const CONTAINER_SLR = '.elements'
-
-const CARD_TEMPLATE_SLR = '#CARD_TEMPLATE_SLR'
+const CARD_TEMPLATE_SLR = '#CARD_TEMPLATE_SLR';
 
 const VALIDATOR_SETTINGS = {
   INPUT_SLR: '.popup__input',
@@ -42,28 +56,7 @@ const VALIDATOR_SETTINGS = {
   SUBMIT_BUTTON_DISABLED: 'popup__save-button_disabled'
 }
 
-const INITIAL_CARDS = [{
-    name: 'Архыз',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
-  },
-  {
-    name: 'Челябинская область',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
-  },
-  {
-    name: 'Иваново',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
-  },
-  {
-    name: 'Камчатка',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
-  },
-  {
-    name: 'Холмогорский район',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
-  },
-  {
-    name: 'Байкал',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
-  }
-];
+const TEXT_SAVE = "Сохранить";
+const TEXT_SAVE_PROCESSING = "Сохранение...";
+const TEXT_DELETE = "Да"
+const TEXT_DELETE_PROCESSING = "Удаление...";
