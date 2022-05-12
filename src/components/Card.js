@@ -24,11 +24,8 @@ export default class Card {
   }
 
   _setEventListeners() {
-    // this._deleteButton.addEventListener('click', () => this._handleDelete());
     this._deleteButton.addEventListener('click', () => this._handleDeleteClick(this._id));
-
     this._likeButton.addEventListener('click', () => this._handleLikeClick(this._id));
-    // console.log('кликаем на кнопку лайк');
     this._image.addEventListener('click', () => {
       this._handleCardClick({
         name: this._name,
@@ -43,20 +40,7 @@ export default class Card {
     this._image.alt = this._name;
   }
 
-  //находит спан с лайком
-  setLikes(newLikes) {
-    // console.log('newLikes', newLikes);
-    this._likes = newLikes;
-    const likeCountElement = this._newCard.querySelector('.element__like-count');
-    likeCountElement.textContent = this._likes.length;
-    // const userHasLikeCard = this._likes.find(user => user._id === this._userId);
-    // if(userHasLikeCard) {
-    if(this.isLiked()) {
-      this._fillLike();
-    } else {
-      this._deleteFillLike();
-    }
-  }
+
 
   _fillLike() {
     this._likeButton.classList.add('element__like_active');
@@ -70,6 +54,8 @@ export default class Card {
     this._newCard = this._template.querySelector('.element').cloneNode(true);
     this._likeButton = this._newCard.querySelector('.element__button-like');
     this._deleteButton = this._newCard.querySelector('.element__button-delete');
+    this._likeCountElement = this._newCard.querySelector('.element__like-count');
+
     this._image = this._newCard.querySelector('.element__image');
     this._fillCard();
     this._setEventListeners();
@@ -81,4 +67,15 @@ export default class Card {
 
     return this._newCard;
   }
+
+    //находит спан с лайком
+    setLikes(newLikes) {
+      this._likes = newLikes;
+      this._likeCountElement.textContent = this._likes.length;
+      if(this.isLiked()) {
+        this._fillLike();
+      } else {
+        this._deleteFillLike();
+      }
+    }
 }

@@ -21,6 +21,8 @@ export default class FormValidator {
     // Остальной код такой же
     inputElement.classList.remove(this._settings.INPUT_ERROR_CLASS);
     errorElement.classList.remove(this._settings.ERROR_CLASS);
+
+
     errorElement.textContent = '';
   };
 

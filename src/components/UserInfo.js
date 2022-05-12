@@ -20,15 +20,14 @@ export default class UserInfo {
 
   //принимает новые данные пользователя и добавляет их на страницу.
   setUserInfo(name, about, avatar) {
-    this._userName.textContent = name;
-    this._userAbout.textContent = about;
+    if(name !== null) {
+      this._userName.textContent = name;
+    }
+    if(about !== null) {
+      this._userAbout.textContent = about;
+    }
     if(avatar !== null) {
       this._userAvatar.src = avatar;
     }
   }
-
-  setAvatar(ava) {
-    this._userAvatar.src = ava.avatar;
-  }
-
 }

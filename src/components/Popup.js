@@ -20,18 +20,13 @@ export default class Popup {
       this.close();
     }
   }
-
   setEventListeners() {
     const closeButton = this._popup.querySelector('.popup__close-button');
     this._popup.addEventListener('mousedown', (e) => {
-      if (!e.target.closest('.popup__container') || e.target === closeButton) {
+      if (e.target === this._popup || e.target === closeButton) {
         this.close();
       }
     })
   }
 
-  setButtonText(text) {
-    this._buttonText = this._popup.querySelector('form').querySelector('.popup__save-button');
-      this._buttonText.textContent = text;
-  }
 }
