@@ -36,7 +36,6 @@ export default class PopupWithForm extends Popup {
   }
 
   setButtonText(text) {
-    // this._submitButton = this._popup.querySelector('form').querySelector('.popup__save-button');
       if (this._submitButton) {
         this._submitButton.textContent = text;
   }
