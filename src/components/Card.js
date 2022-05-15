@@ -1,13 +1,13 @@
 export default class Card {
 
-  constructor(data, cardTemplateSelector, handleCardClick, handleDeleteClick, handleLikeClick) {
+  constructor(data, cardTemplateSelector, handleCardClick, handleDeleteClick, handleLikeClick, userId) {
     this._template = document.querySelector(cardTemplateSelector).content;
     this._name = data.name;
     this._link = data.link;
     this._likes = data.likes;
-    this._id = data.id;
-    this._userId = data.userId;
-    this._ownerId = data.ownerId;
+    this._id = data._id;
+    this._userId = userId;
+    this._ownerId = data.owner._id;
     this._handleCardClick = handleCardClick;
     this._handleDeleteClick = handleDeleteClick;
     this._handleLikeClick = handleLikeClick;

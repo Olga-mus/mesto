@@ -9,10 +9,16 @@ export default class Section {
     this._renderer = renderer;
   }
 
-  renderItems() {
-    this._items.forEach(data => {
-      // this._renderer(data);
-      renderItems(items)
+  // renderItems() {
+  //   this._items.forEach(data => {
+  //     this._renderer(data);
+  //     // renderItems(items)
+  //   })
+  // }
+
+  renderItems(items, userId) {
+    items.forEach(data => {
+      this._renderer(data, userId);
     })
   }
 

@@ -11,7 +11,7 @@ import './index.css';
 let userId
 
 //создание одной карты
-function createCard(data) {
+function createCard(data, userId) {
   const copyCard = new Card(
     data,
     CARD_TEMPLATE_SLR,
@@ -36,17 +36,18 @@ function createCard(data) {
         api.deleteLike(id)
         .then(res => {
           copyCard.setLikes(res.likes);
+        }).catch(err => {
+          console.log('Error', err);
         })
       } else {
         api.addLike(id)
         .then(res => {
           copyCard.setLikes(res.likes);
-        }) .catch(err => {
+        }).catch(err => {
           console.log('Error', err);
         });
       }
-
-    }
+    }, userId
     );
   return copyCard.createCard();
 
@@ -63,32 +64,26 @@ function handleSubmitAdd(data) {
   const {name, link} = data;
   api.addCard(name, link)
   .then(res => {
-    const card = createCard({
-      name: res.name,
-      link: res.link,
-      likes: res.likes,
-      id: res._id,
-      userId: userId,
-      ownerId: res.owner._id
-    })
+    const card = createCard(res, userId)
     section.addItem(card);
     popupAdd.close()
-  })  .catch(err => {
+  }).catch(err => {
     console.log('Error', err);
   }).finally(() => {
     popupAdd.setButtonText(TEXT_SAVE);
   })
+
 }
 
 // submit для popup edit
 function handleSubmitEdit(data) {
   popupEdit.setButtonText(TEXT_SAVE_PROCESSING);
-  const {firstname, proffesion} = data;-
+  const {firstname, proffesion} = data;
   api.editProfile(firstname, proffesion)
   .then(() => {
     userInfo.setUserInfo(firstname, proffesion, null);
     popupEdit.close();
-  }) .catch(err => {
+  }).catch(err => {
     console.log('Error', err);
   }).finally(() => {
     popupEdit.setButtonText(TEXT_SAVE);
@@ -105,10 +100,10 @@ function updatePopupEditInputs() {
 
 // создание объектов
 const section = new Section({ items: [], renderer: renderCards}, CONTAINER_SLR);
-section.renderItems();
+// section.renderItems();
 //отрисовка всех карт
-function renderCards(data) {
-  const cardElement = createCard(data);
+function renderCards(data, userId) {
+  const cardElement = createCard(data, userId);
   section.addItem(cardElement);
 }
 
@@ -153,8 +148,8 @@ const api = new Api({
 
 // добавление слушателей
 POPUP.EDIT.OPEN.addEventListener('click', () => {
+  // popupEdit.resetValidation();
   updatePopupEditInputs();
-  // popupEdit.setButtonText(TEXT_SAVE);
   popupEdit.open();
 });
 
@@ -175,29 +170,41 @@ function editAvatar(avatar) {
       userInfo.setUserInfo(null, null, avatar.avatar);
       popupAvatar.close()
     })
-    .catch(console.log)
+    .catch(err => {
+      console.log('Error', err);
+    })
     .finally(() => {
       popupAvatar.setButtonText(TEXT_SAVE);
     })
 }
-
 
 Promise.all([api.getProfile(), api.getInitialCards()])
 // тут деструктурируете ответ от сервера, чтобы было понятнее, что пришло
   .then(([userData, cards]) => {
     userInfo.setUserInfo(userData.name, userData.about, userData.avatar);
   userId = userData._id;
-  cards.forEach(data => {
-    const card = createCard({
-      name: data.name,
-      link: data.link,
-      likes: data.likes,
-      id: data._id,
-      userId: userId,
-      ownerId: data.owner._id
-    });
-    section.addItem(card)
-  } )
+  section.renderItems(cards, userId);
+
+  // section.renderItems({
+  //   name: data.name,
+  //   link: data.link,
+  //   likes: data.likes,
+  //   id: data._id,
+  //   userId: userId,
+  //   ownerId: data.owner._id
+  // });
+  // cards.forEach(data => {
+  //   const card = createCard({
+  //     name: data.name,
+  //     link: data.link,
+  //     likes: data.likes,
+  //     id: data._id,
+  //     userId: userId,
+  //     ownerId: data.owner._id
+  //   })
+  //   section.addItem(card)
+  // } )
+
       // тут установка данных пользователя
       // и тут отрисовка карточек
   })
