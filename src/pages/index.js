@@ -100,7 +100,6 @@ function updatePopupEditInputs() {
 
 // создание объектов
 const section = new Section({ items: [], renderer: renderCards}, CONTAINER_SLR);
-// section.renderItems();
 //отрисовка всех карт
 function renderCards(data, userId) {
   const cardElement = createCard(data, userId);
@@ -148,7 +147,6 @@ const api = new Api({
 
 // добавление слушателей
 POPUP.EDIT.OPEN.addEventListener('click', () => {
-  // popupEdit.resetValidation();
   updatePopupEditInputs();
   popupEdit.open();
 });
