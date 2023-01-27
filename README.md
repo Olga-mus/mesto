@@ -9,11 +9,11 @@
 
 **Описание проекта**
 
-npm run dev - для локальной разработки
+`npm run dev` - для локальной разработки
 
-npm run build - для прод.сборки
+`npm run build` - для прод.сборки
 
-npm run deploy - деплой проекта на Github Pages
+`npm run deploy` - деплой проекта на Github Pages
 
 **Работа с проектом**
 
