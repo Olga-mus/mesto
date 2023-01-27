@@ -49,6 +49,8 @@ function createCard(data, userId) {
       }
     }, userId
     );
+    console.log('data Card', data);
+
   return copyCard.createCard();
 
 }
@@ -64,7 +66,7 @@ function handleSubmitAdd(data) {
   const {name, link} = data;
   api.addCard(name, link)
   .then(res => {
-    const card = createCard(res, userId)
+    const card = createCard(res, userId);
     section.addItem(card);
     popupAdd.close()
   }).catch(err => {
@@ -126,6 +128,7 @@ const userInfo = new UserInfo({
   userAvatar: USER.AVATAR_SLR
 });
 
+
 const popupConfirm = new PopupWithForm(POPUP.CONFIRM.SELECTOR);
 
 popupConfirm.setEventListeners();
@@ -181,7 +184,9 @@ Promise.all([api.getProfile(), api.getInitialCards()])
   .then(([userData, cards]) => {
     userInfo.setUserInfo(userData.name, userData.about, userData.avatar);
   userId = userData._id;
+
   section.renderItems(cards, userId);
+
 
   // section.renderItems({
   //   name: data.name,
